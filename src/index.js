@@ -3,7 +3,7 @@ const setup = require('./setup');
 
 module.exports = (client, options) => {
   const redis = dRedis(options.redis);
-  setup(redis, options).then(() => {
+  setup(redis.client, options.info).then(() => {
     redis(client);
   });
 };
