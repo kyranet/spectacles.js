@@ -1,0 +1,27 @@
+{
+  "name": "spectacles.js",
+  "version": "0.1.0",
+  "description": "Spectacles integration with Discord.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spec-tacles/spectacles.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spec-tacles/spectacles.js/issues"
+  },
+  "homepage": "https://github.com/spec-tacles/spectacles.js#readme",
+  "dependencies": {
+    "discord.js-redis": "github:spec-tacles/discord.js-redis"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0"
+  }
+}
