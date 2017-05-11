@@ -2,7 +2,7 @@ require('dotenv').config({ path: 'test/.env' });
 const spectacles = require('../src/index');
 const discord = require('discord.js');
 
-describe('spectacles', function() {
+describe('discord.js', function() {
   let client;
   before(function() {
     client = new discord.Client();
@@ -10,6 +10,6 @@ describe('spectacles', function() {
   });
 
   it('initializes', function() {
-    return spectacles(client, {});
+    return spectacles('discord.js', client);
   });
 });
