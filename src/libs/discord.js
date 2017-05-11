@@ -20,13 +20,13 @@ class DiscordJS extends EventEmitter {
   }
 
   setMe() {
-    return this.redis.client.hmsetAsync('me', {
+    return this.redis.client.hmsetAsync('me', redis.RedisInterface.clean({
       id: this.client.user.id,
       username: this.client.user.username,
       disciminator: this.client.user.discriminator,
       avatar: this.client.user.avatar,
       bot: this.client.user.bot,
-    });
+    }));
   }
 }
 

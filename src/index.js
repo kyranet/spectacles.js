@@ -14,4 +14,6 @@ module.exports = (lib, client, options) => {
     integration.setPresences();
     integration.setMe();
   });
+
+  return integration;
 };
