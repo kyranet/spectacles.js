@@ -15,7 +15,7 @@ class DiscordJS extends EventEmitter {
   setPresences() {
     return this.redis.client.hmsetAsync('presences', {
       [this.client.shard ? this.client.shard.id : 0]:
-        JSON.stringify(redis.RedisInterface.flatten(this.client.user.presence)),
+        JSON.stringify(this.client.user.presence),
     });
   }
 
