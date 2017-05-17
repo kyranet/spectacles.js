@@ -11,6 +11,7 @@ module.exports = (lib, client, options) => {
   }
 
   integration.once('ready', () => {
+    integration.watchPresences();
     integration.setPresences();
     integration.setMe();
   });

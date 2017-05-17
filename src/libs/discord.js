@@ -12,10 +12,18 @@ class DiscordJS extends EventEmitter {
     else this.redis.once('ready', () => this.emit('ready', this));
   }
 
+  watchPresences() {
+    return this.client.on('presenceUpdate', (u) => {
+      if (u.id === this.client.id) {
+        this.redis.client.publishAsync('presencesSet', this.client.shard ? this.client.shard.id : 0);
+        this.setPresences();
+      }
+    });
+  }
+
   setPresences() {
     return this.redis.client.hmsetAsync('presences', {
-      [this.client.shard ? this.client.shard.id : 0]:
-        JSON.stringify(this.client.user.presence),
+      [this.client.shard ? this.client.shard.id : 0]: JSON.stringify(this.client.user.presence),
     });
   }
 
