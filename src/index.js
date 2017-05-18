@@ -1,20 +1,8 @@
-const DiscordJS = require('./libs/discord');
-
-module.exports = (lib, client, options) => {
-  let integration;
-  switch (lib) {
-    case 'discord.js':
-      integration = new DiscordJS(client, options);
-      break;
-    default:
-      throw new Error(`The library ${lib} isn't supported.`);
+class Spectacles {
+  constructor(client, integration) {
+    this.client = client;
+    this.integration = integration;
   }
+}
 
-  integration.once('ready', () => {
-    integration.watchPresences();
-    integration.setPresences();
-    integration.setMe();
-  });
-
-  return integration;
-};
+module.exports = Spectacles;
