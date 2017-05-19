@@ -1,5 +1,4 @@
 const Cache = require('./interfaces/Cache');
-const DiscordJSCache = require('./integrations/caches/discord.js');
 
 const Integration = require('./interfaces/Integration');
 const DiscordJSIntegration = require('./integrations/libs/discord.js');
@@ -16,7 +15,7 @@ module.exports = (lib, framework) => {
         case 'akairo':
           return AkairoIntegration;
         default:
-          return { DiscordJSIntegration, DiscordJSCache };
+          return DiscordJSIntegration;
       }
     }
     default:
