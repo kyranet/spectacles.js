@@ -2,8 +2,8 @@ const Cache = require('../../interfaces/Cache');
 const dRedis = require('discord.js-redis');
 
 class DiscordJSCache extends Cache {
-  constructor(options) {
-    const redis = new dRedis.Client(options);
+  constructor(client, options) {
+    const redis = new dRedis.Client(client, options);
     super(redis.client);
   }
 

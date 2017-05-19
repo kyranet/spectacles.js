@@ -3,7 +3,7 @@ const Cache = require('../caches/discord.js');
 
 class DiscordJSIntegration extends Integration {
   constructor(client, options = {}) {
-    super(client, new Cache(options));
+    super(client, new Cache(client, options));
   }
 }
 
