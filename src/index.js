@@ -22,3 +22,10 @@ module.exports = (lib, framework) => {
       return { Integration, Cache };
   }
 };
+
+/**
+ * @typedef {Object} FormattedCommand
+ * @property {string} name
+ * @property {string} description
+ * @property {Array<string>} aliases
+ */

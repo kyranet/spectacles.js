@@ -1,20 +1,31 @@
 const Cache = require('../../interfaces/Cache');
 const dRedis = require('discord.js-redis');
 
+/**
+ * The Discord.js cache interface.
+ * @param {Client} client
+ * @param {Object} [options={}]
+ * @extends Cache
+ */
 class DiscordJSCache extends Cache {
   constructor(client, options) {
     const redis = new dRedis.Client(client, options);
     super(redis.client);
+    this.client = client;
   }
 
-  storePresence(client) {
+  storePresence() {
     return this.redis.hmsetAsync('presences', {
-      [client.shard ? client.shard.id : 0]: JSON.stringify(client.user.presence),
+      [this.client.shard ? this.client.shard.id : 0]: JSON.stringify(this.client.user.presence),
     });
   }
 
-  storeMe(client) {
-    return this.redis.hmsetAsync('me', dRedis.RedisInterface.clean(client.user));
+  storeMe() {
+    return this.redis.hmsetAsync('me', dRedis.RedisInterface.clean(this.client.user));
+  }
+
+  removeCommand(name) {
+    return this.redis.hdelAsync(`commands:${name}`);
   }
 
   storeCommand(command) {
