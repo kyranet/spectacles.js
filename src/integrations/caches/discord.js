@@ -9,7 +9,7 @@ const dRedis = require('discord.js-redis');
  */
 class DiscordJSCache extends Cache {
   constructor(client, options) {
-    const redis = new dRedis.Client(client, options);
+    const redis = new dRedis.RedisClient(client, options);
     super(redis.client);
     this.client = client;
   }
