@@ -2,7 +2,7 @@ const DiscordJSIntegration = require('./libs/discord.js');
 
 class AkairoIntegration extends DiscordJSIntegration {
   getCommands() {
-    return this.client.commandHandler.modules.map(c => AkairoIntegration.formatCommand(c));
+    return this.client.commandHandler.modules.map(AkairoIntegration.formatCommand);
   }
 
   getCommand(id) {

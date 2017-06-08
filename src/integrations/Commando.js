@@ -23,12 +23,12 @@ class CommandoIntegration extends DiscordJSIntegration {
     });
 
     this.client.on('groupRegister', (group) => {
-      this.setCommands(group.commands.map(g => CommandoIntegration.formatCommand(g)));
+      this.setCommands(group.commands.map(CommandoIntegration.formatCommand));
     });
   }
 
   getCommands() {
-    return this.client.registry.commands.map(c => CommandoIntegration.formatCommand(c));
+    return this.client.registry.commands.map(CommandoIntegration.formatCommand);
   }
 
   getCommand(name) {
