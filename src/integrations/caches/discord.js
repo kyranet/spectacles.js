@@ -1,4 +1,5 @@
 const Cache = require('../../interfaces/Cache');
+const { flatten } = require('../../util');
 const dRedis = require('discord.js-redis');
 
 /**
@@ -29,12 +30,12 @@ class DiscordJSCache extends Cache {
   }
 
   storeCommand(command) {
-    return this.redis.hmsetAsync(`commands:${command.name}`, command);
+    return this.redis.hmsetAsync(`commands:${command.name}`, flatten(command));
   }
 
   storeCommands(commands) {
     const q = this.redis.multi();
-    commands.forEach(c => q.hmset(`commands:${c.name}`, c));
+    commands.forEach(c => q.hmset(`commands:${c.name}`, flatten(c)));
     return q.execAsync();
   }
 }

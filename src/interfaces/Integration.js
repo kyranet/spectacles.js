@@ -54,7 +54,7 @@ class Integration extends EventEmitter {
   /**
    * Get a formatted command.
    * @param {string} name
-   * @returns {FormattedCommand}
+   * @returns {?FormattedCommand}
    * @abstract
    */
   getCommand() {

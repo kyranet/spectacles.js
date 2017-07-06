@@ -1,17 +1,49 @@
 require('dotenv').config({ path: 'test/.env' });
 const spectacles = require('../src/index');
 const discord = require('discord.js');
+const test = require('ava');
 
-process.on('unhandledRejection', console.error);
+test('discord.js', async t => {
+  const client = new discord.Client();
+  const Spec = spectacles('discord.js');
 
-describe('discord.js', function() {
-  let client;
-  before(function() {
-    client = new discord.Client();
-    return client.login(process.env.DISCORD_TOKEN);
-  });
+  Spec.prototype.getCommands = () => [
+    {
+      name: 'test',
+      description: 'test command',
+      aliases: ['t']
+    },
+    {
+      name: 'other test',
+      description: 'other test command',
+      aliases: ['o']
+    }
+  ];
 
-  it('initializes', function(done) {
-    spectacles('discord.js', client).once('ready', () => done());
-  });
+  Spec.prototype.getCommand = name => {
+    switch (name) {
+      case 'test':
+        return {
+          name: 'test',
+          description: 'test command',
+          aliases: ['t']
+        };
+      case 'other test':
+        return {
+          name: 'other test',
+          description: 'other test command',
+          aliases: ['o']
+        };
+      default:
+        return null;
+    }
+  }
+
+  const tacles = new Spec(client);
+
+  await client.login(process.env.DISCORD_TOKEN);
+  await tacles.setCommands();
+  await tacles.setCommand('other test');
+
+  return t.pass();
 });
