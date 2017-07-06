@@ -1,20 +1,31 @@
-const DiscordJS = require('./libs/discord');
+const Cache = require('./interfaces/Cache');
 
-module.exports = (lib, client, options) => {
-  let integration;
+const Integration = require('./interfaces/Integration');
+const DiscordJSIntegration = require('./integrations/libs/discord.js');
+
+const CommandoIntegration = require('./integrations/Commando');
+const AkairoIntegration = require('./integrations/Akairo');
+
+module.exports = (lib, framework) => {
   switch (lib) {
-    case 'discord.js':
-      integration = new DiscordJS(client, options);
-      break;
+    case 'discord.js': {
+      switch (framework) {
+        case 'commando':
+          return CommandoIntegration;
+        case 'akairo':
+          return AkairoIntegration;
+        default:
+          return DiscordJSIntegration;
+      }
+    }
     default:
-      throw new Error(`The library ${lib} isn't supported.`);
+      return { Integration, Cache };
   }
-
-  integration.once('ready', () => {
-    integration.watchPresences();
-    integration.setPresences();
-    integration.setMe();
-  });
-
-  return integration;
 };
+
+/**
+ * @typedef {Object} FormattedCommand
+ * @property {string} name
+ * @property {string} description
+ * @property {Array<string>} aliases
+ */
