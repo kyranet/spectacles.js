@@ -1,6 +1,20 @@
 const DiscordJSIntegration = require('./libs/discord.js');
 
 class AkairoIntegration extends DiscordJSIntegration {
+  constructor(client, options = {}) {
+    super(client, options);
+
+    debugger;
+
+    this.client.commandHandler.on('add', (command) => {
+      this.setCommand(command.name);
+    });
+
+    this.client.commandHandler.on('remove', (command) => {
+      this.unsetCommand(command.name);
+    });
+  }
+
   getCommands() {
     return this.client.commandHandler.modules.map(AkairoIntegration.formatCommand);
   }
