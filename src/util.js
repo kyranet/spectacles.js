@@ -4,8 +4,8 @@ exports.interfaceError = function interfaceError() {
 
 exports.flatten = (obj) => {
   const out = {};
-  Object.entries(obj).forEach(([k, v]) => {
-    out[k] = JSON.stringify(v);
+  Object.keys(obj).forEach((k) => {
+    out[k] = JSON.stringify(obj[k]);
   });
   return out;
 };
