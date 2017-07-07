@@ -2,6 +2,7 @@ require('dotenv').config({ path: 'test/.env' });
 const spectacles = require('../src/index');
 const discord = require('discord.js');
 const akairo = require('discord-akairo');
+const commando = require('discord.js-commando');
 const test = require('ava');
 
 test('discord.js', async (t) => {
@@ -61,5 +62,16 @@ test('akairo', async (t) => {
   const tacles = new Spec(client);
   await client.login(process.env.DISCORD_TOKEN);
 
+  return t.pass();
+});
+
+test('commando', async (t) => {
+  const client = new commando.Client();
+  const Spec = spectacles('discord.js', 'commando');
+  // eslint-disable-next-line no-unused-vars
+  const tacles = new Spec(client);
+  client.registry.registerDefaults();
+
+  await client.login(process.env.DISCORD_TOKEN);
   return t.pass();
 });
