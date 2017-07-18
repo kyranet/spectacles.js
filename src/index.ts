@@ -1,12 +1,12 @@
-const Cache = require('./interfaces/Cache');
+import Cache from './interfaces/Cache';
 
-const Integration = require('./interfaces/Integration');
-const DiscordJSIntegration = require('./integrations/libs/discord.js');
+import Integration from './interfaces/Integration';
+import DiscordJSIntegration from './integrations/discord.js/Integration';
 
-const CommandoIntegration = require('./integrations/Commando');
-const AkairoIntegration = require('./integrations/Akairo');
+import CommandoIntegration from './integrations/discord.js/frameworks/Commando';
+import AkairoIntegration from './integrations/discord.js/frameworks/Akairo';
 
-module.exports = (lib, framework) => {
+export default (lib, framework) => {
   switch (lib) {
     case 'discord.js': {
       switch (framework) {

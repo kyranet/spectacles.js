@@ -1,8 +1,8 @@
-exports.interfaceError = function interfaceError() {
+export const interfaceError = function interfaceError() {
   throw new Error(`The method ${this.name} was not implemented.`);
 };
 
-exports.flatten = (obj) => {
+export const flatten = (obj) => {
   const out = {};
   Object.keys(obj).forEach((k) => {
     out[k] = JSON.stringify(obj[k]);
