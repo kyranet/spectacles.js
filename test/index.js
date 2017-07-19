@@ -67,7 +67,7 @@ test.skip('akairo', async (t) => {
 });
 
 test('commando', async (t) => {
-  if (semver.lt(process.version, '7.6.0')) t.skip();
+  if (semver.lt(process.version, '7.6.0')) return t.skip();
 
   const client = new commando.Client();
   const Spec = spectacles('discord.js', 'commando');
