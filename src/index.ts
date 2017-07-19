@@ -7,7 +7,7 @@ import DiscordJSIntegration from './integrations/discord.js/Integration';
 import CommandoIntegration from './integrations/discord.js/frameworks/Commando';
 import KomadaIntegration from './integrations/discord.js/frameworks/Komada';
 
-export default (lib: string, framework: string) => {
+export default module.exports = (lib: string, framework: string) => {
   switch (lib) {
     case 'discord.js': {
       switch (framework) {
