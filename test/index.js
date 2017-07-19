@@ -1,8 +1,8 @@
+/* eslint-disable global-require */
 require('dotenv').config({ path: 'test/.env' });
-const spectacles = require('../src/index');
+const spectacles = require('../dist/index');
 const discord = require('discord.js');
-const akairo = require('discord-akairo');
-const commando = require('discord.js-commando');
+const semver = require('semver');
 const test = require('ava');
 
 test('discord.js', async (t) => {
@@ -50,7 +50,9 @@ test('discord.js', async (t) => {
   return t.pass();
 });
 
-test('akairo', async (t) => {
+test.skip('akairo', async (t) => {
+  const akairo = require('discord-akairo');
+
   const client = new akairo.AkairoClient({
     commandDirectory: './test/akairoCommands',
   });
@@ -65,7 +67,9 @@ test('akairo', async (t) => {
   return t.pass();
 });
 
-test('commando', async (t) => {
+(semver.lt(process.version, '7.6.0') ? test.skip : test)('commando', async (t) => {
+  const commando = require('discord.js-commando');
+
   const client = new commando.Client();
   const Spec = spectacles('discord.js', 'commando');
   // eslint-disable-next-line no-unused-vars
