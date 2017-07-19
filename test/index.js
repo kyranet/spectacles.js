@@ -3,6 +3,7 @@ const spectacles = require('../dist/index');
 const discord = require('discord.js');
 const akairo = require('discord-akairo');
 const commando = require('discord.js-commando');
+const semver = require('semver');
 const test = require('ava');
 
 test('discord.js', async (t) => {
@@ -66,6 +67,8 @@ test.skip('akairo', async (t) => {
 });
 
 test('commando', async (t) => {
+  if (semver.lt(process.version, '7.6.0')) t.skip();
+
   const client = new commando.Client();
   const Spec = spectacles('discord.js', 'commando');
   // eslint-disable-next-line no-unused-vars
