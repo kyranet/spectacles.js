@@ -1,5 +1,5 @@
 require('dotenv').config({ path: 'test/.env' });
-const spectacles = require('../src/index');
+const spectacles = require('../dist/index');
 const discord = require('discord.js');
 const akairo = require('discord-akairo');
 const commando = require('discord.js-commando');
@@ -50,7 +50,7 @@ test('discord.js', async (t) => {
   return t.pass();
 });
 
-test('akairo', async (t) => {
+test.skip('akairo', async (t) => {
   const client = new akairo.AkairoClient({
     commandDirectory: './test/akairoCommands',
   });
