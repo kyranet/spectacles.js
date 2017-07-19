@@ -1,4 +1,3 @@
-import { Client } from 'discord.js';
 import komada = require('komada');
 
 import { IFormattedCommand } from '../../../interfaces/IFormattedCommand';

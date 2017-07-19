@@ -6,7 +6,8 @@
   "typings": "typings/index.d.ts",
   "scripts": {
     "postinstall": "gulp",
-    "test": "ava test/index.js"
+    "test": "npm run lint && ava test/index.js",
+    "lint": "tslint --project tsconfig.json src/**"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "komada": "^0.19.7",
     "semver": "^5.3.0",
     "sqlite": "^2.8.0",
+    "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },
   "dependencies": {

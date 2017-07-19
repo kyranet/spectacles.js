@@ -2,7 +2,6 @@
 import Cache from './Cache';
 import EventEmitter = require('events');
 import { IFormattedCommand } from '../interfaces/IFormattedCommand';
-import * as util from '../util';
 
 /**
  * The basic spectacles integration.

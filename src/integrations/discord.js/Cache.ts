@@ -27,6 +27,6 @@ export default class DiscordJSCache extends Cache {
   }
 
   public storeMe() {
-    return this.redis.hmsetAsync('me', dRedis.RedisInterface.clean(this.client.user));
+    return this.redis.hmsetAsync('me', flatten(this.client.user));
   }
 }

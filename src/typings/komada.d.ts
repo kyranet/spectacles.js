@@ -50,6 +50,6 @@ declare module 'komada' {
       usage: string,
       usageDelim: string,
       extendedHelp: string,
-    }
+    };
   }
 }

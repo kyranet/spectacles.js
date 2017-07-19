@@ -1,13 +1,13 @@
 declare module 'redis' {
-  export interface RedisClient extends NodeJS.EventEmitter {
-    hdelAsync: (key: string) => Promise<number>;
-    hmsetAsync: (key: string, data: Object) => Promise<string>;
-    multi: () => Multi;
+  export class RedisClient extends NodeJS.EventEmitter {
+    public hdelAsync: (key: string) => Promise<number>;
+    public hmsetAsync: (key: string, data: object) => Promise<string>;
+    public multi: () => Multi;
   }
 
-  export interface Multi extends NodeJS.EventEmitter {
-    hmset: (key: string, data: Object) => string;
-    execAsync: () => any[];
+  export class Multi extends NodeJS.EventEmitter {
+    public hmset: (key: string, data: object) => string;
+    public execAsync: () => any[];
   }
 
   export interface Options {
@@ -27,9 +27,14 @@ declare module 'redis' {
     db?: string;
     family?: string;
     disable_resubscribing?: boolean;
-    rename_commands?: Object;
-    tls?: Object;
+    rename_commands?: object;
+    tls?: object;
     prefix?: string;
-    retry_strategy?: (data: { attempt: number, total_retry_time: number, error: Error, times_connected: number }) => number | Error | any;
+    retry_strategy?: (data: {
+      attempt: number,
+      total_retry_time: number,
+      error: Error,
+      times_connected: number,
+    }) => number | Error | any;
   }
 }

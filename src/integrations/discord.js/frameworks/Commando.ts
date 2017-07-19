@@ -1,7 +1,5 @@
-import { Collection } from 'discord.js';
 import { Command, CommandGroup, CommandoClient } from 'discord.js-commando';
 import { Options as RedisOptions } from 'redis';
-import { IFormattedCommand } from '../../../interfaces/IFormattedCommand';
 import DiscordJSIntegration from '../Integration';
 
 /**
