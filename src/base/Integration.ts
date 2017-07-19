@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import Cache from './Cache';
 import EventEmitter = require('events');
-import { IFormattedCommand } from '../types/FormattedCommand';
+import { IFormattedCommand } from '../interfaces/IFormattedCommand';
 import * as util from '../util';
 
 /**
@@ -45,29 +45,17 @@ export default abstract class Integration extends EventEmitter {
     return this.cache.removeCommand(command);
   }
 
-  public setConfigs(configs = this.getConfigs()) {
-    return this.cache.storeConfigs(configs);
-  }
-
-  public setConfig(config) {
-    return this.setConfigs([config]);
-  }
-
   /**
    * Set the client's presence.
    * @returns {Promise}
    */
-  public setPresence() {
-    return this.cache.storePresence(this.client);
-  }
+  public abstract setPresence(): Promise<any>;
 
   /**
    * Set the client user data.
    * @returns {Promise}
    */
-  public setMe() {
-    return this.cache.storeMe(this.client);
-  }
+  public abstract setMe(): Promise<any>;
 
   /**
    * Get an array of formatted commands.
@@ -75,12 +63,4 @@ export default abstract class Integration extends EventEmitter {
    * @abstract
    */
   public abstract getCommands(): IFormattedCommand[];
-
-  /**
-   * Get a formatted command.
-   * @param {string} name
-   * @returns {?FormattedCommand}
-   * @abstract
-   */
-  public abstract getCommand(name: string): IFormattedCommand;
 }

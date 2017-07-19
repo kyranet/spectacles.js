@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { RedisClient } from 'redis';
-import { IFormattedCommand } from '../types/FormattedCommand';
+import { IFormattedCommand } from '../interfaces/IFormattedCommand';
 import { flatten } from '../util';
 
 /**
@@ -18,13 +18,13 @@ export default abstract class Cache {
    * Cache the client's presence.
    * @abstract
    */
-  public abstract storePresence(): Promise<any>;
+  public abstract storePresence(client: any): Promise<any>;
 
   /**
    * Cache the client user's information.
    * @abstract
    */
-  public abstract storeMe(): Promise<any>;
+  public abstract storeMe(client: any): Promise<any>;
 
   /**
    * Remove a command from the cache.

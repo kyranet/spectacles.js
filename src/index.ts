@@ -1,19 +1,22 @@
-import Cache from './interfaces/Cache';
+import Cache from './base/Cache';
+import Integration from './base/Integration';
 
-import Integration from './interfaces/Integration';
 import DiscordJSIntegration from './integrations/discord.js/Integration';
 
+// import AkairoIntegration from './integrations/discord.js/frameworks/Akairo';
 import CommandoIntegration from './integrations/discord.js/frameworks/Commando';
-import AkairoIntegration from './integrations/discord.js/frameworks/Akairo';
+import KomadaIntegration from './integrations/discord.js/frameworks/Komada';
 
-export default (lib, framework) => {
+export default (lib: string, framework: string) => {
   switch (lib) {
     case 'discord.js': {
       switch (framework) {
         case 'commando':
           return CommandoIntegration;
-        case 'akairo':
-          return AkairoIntegration;
+        // case 'akairo':
+        //   return AkairoIntegration;
+        case 'komada':
+          return KomadaIntegration;
         default:
           return DiscordJSIntegration;
       }

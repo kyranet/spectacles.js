@@ -1,7 +1,7 @@
 import { Client } from 'discord.js';
 import komada = require('komada');
 
-import { IFormattedCommand } from '../../../types/FormattedCommand';
+import { IFormattedCommand } from '../../../interfaces/IFormattedCommand';
 import DiscordJSIntegration from '../Integration';
 
 export default class KomadaIntegration extends DiscordJSIntegration {
