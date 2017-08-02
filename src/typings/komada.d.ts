@@ -7,6 +7,9 @@ declare module 'komada' {
     RichEmbed,
     Util,
     WebhookClient,
+    escapeMarkdown,
+    splitMessage,
+    User,
   } from 'discord.js';
 
   export class KomadaClient extends Client {
@@ -16,21 +19,29 @@ declare module 'komada' {
     public commands: Collection<string, Command>;
     public aliases: Collection<any, any>;
     public commandInhibitors: Collection<any, any>;
+    public commandFinalizers: Collection<any, any>;
     public messageMonitors: Collection<any, any>;
+    public eventHandlers: Collection<any, any>;
     public providers: Collection<any, any>;
 
-    // missing some of the util methods
     public methods: {
       Collection: Collection<any, any>,
       Embed: RichEmbed,
       MessageCollector: MessageCollector,
       Webhook: WebhookClient,
+      escapeMarkdown: escapeMarkdown,
+      splitMessage: splitMessage,
     };
 
     public coreBaseDir: string;
     public clientBaseDir: string;
-    public guildConfs: {};
-    public configuration: {};
+    public settings: {};
+
+    get invite: string;
+    get owner: User;
+
+    public login: (token: string) => void;
+    public sweepCommandMessages: (lifetime: number) => number;
   }
 
   export class Command {
@@ -42,6 +53,7 @@ declare module 'komada' {
       permLevel: number,
       botPerms: string[],
       requiredFuncs: string[],
+      requiredSettings: string[],
       cooldown: number,
     };
     public help: {
